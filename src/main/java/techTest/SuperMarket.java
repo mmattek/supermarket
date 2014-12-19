@@ -13,7 +13,6 @@ public class SuperMarket implements Market {
 			new ConcurrentHashMap<>();
 
 	
-	
 	@Override
 	public int checkout(String items) throws IllegalArgumentException{
 
@@ -28,7 +27,7 @@ public class SuperMarket implements Market {
 		return total;
 	}
  
-	// filters down.. probably a more efficient algorithm here for very large orders?
+	// filters down uniq chars.. probably a more efficient algorithm here for very VERY large orders?
 	private Set<Character> getUniqueItemList(String items){
 		Set<Character> set = new HashSet<Character>();
 		for (Character ch : items.toCharArray()){
