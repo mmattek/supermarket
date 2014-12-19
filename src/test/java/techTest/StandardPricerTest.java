@@ -9,18 +9,12 @@ import techTest.pricers.StandardPricer;
 
 public class StandardPricerTest {
 	Market market;
-	
-	
-	@Before
-	public void setUp() throws Exception {
-		market = new SuperMarket();
-		market.registerPricer(new StandardPricer("A", 20));
-		market.registerPricer(new StandardPricer("C", 30));
-	}
-
 
 	@Test
 	public void test() {
+		market = new SuperMarket();
+		market.registerPricer(new StandardPricer("A", 20));
+		market.registerPricer(new StandardPricer("C", 30));
 		assertTrue(market.checkout("AA")==40);
 		assertTrue(market.checkout("CC")==60);	
 		assertTrue(market.checkout("AC")==50);
@@ -32,6 +26,9 @@ public class StandardPricerTest {
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public void testBadArgs(){
+		market = new SuperMarket();
+		market.registerPricer(new StandardPricer("A", 20));
+		market.registerPricer(new StandardPricer("C", 30));
 		market.checkout("Z");
 	}
 }
