@@ -1,0 +1,8 @@
+what if invalid character is passed? -- throw exception
+(also, trim off spaces etc).
+
+loop thru all letters in an array?
+call Pricer with getAmount(char, #) and return int, then it handles cases like "5 for 150")
+ 
+
+
