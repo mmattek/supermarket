@@ -2,7 +2,7 @@ package techTest.pricers;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class StandardPricer implements ProductPricer{
+public class StandardPricer implements Pricer{
 
 	private final Character letter;
 	private int pricePerUnit;

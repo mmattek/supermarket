@@ -1,11 +1,11 @@
 package techTest;
 
-import techTest.pricers.ProductPricer;
+import techTest.pricers.Pricer;
 
 public interface Market {
 	
 	public int checkout(String items) throws IllegalArgumentException;
 	
-	public void registerPricer(ProductPricer pricer) ;
+	public void registerPricer(Pricer pricer) ;
 	
 }

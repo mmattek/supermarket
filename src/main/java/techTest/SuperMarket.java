@@ -5,11 +5,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import techTest.pricers.ProductPricer;
+import techTest.pricers.Pricer;
 
 public class SuperMarket implements Market {
 
-	private static Map<Character, ProductPricer> pricers = 
+	private static Map<Character, Pricer> pricers = 
 			new ConcurrentHashMap<>();
 
 	
@@ -19,7 +19,7 @@ public class SuperMarket implements Market {
 
 		int total = 0;
 		for (Character ch : getUniqueItemList(items)){
-			ProductPricer productPricer = pricers.get(ch);
+			Pricer productPricer = pricers.get(ch);
 			if (productPricer==null){
 				throw new IllegalArgumentException("can't find pricer for " + String.valueOf(ch));	
 			}
@@ -38,7 +38,7 @@ public class SuperMarket implements Market {
 	}
 
 	@Override
-	public void registerPricer(ProductPricer pricer) {
+	public void registerPricer(Pricer pricer) {
 		pricers.put(pricer.characterOfThisPricer(), pricer);
 		
 	}

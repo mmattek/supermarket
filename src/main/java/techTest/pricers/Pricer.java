@@ -4,7 +4,7 @@ package techTest.pricers;
  * Abstracts away pricing of an individual items
  * @author mmattek
  */
-public interface ProductPricer {
+public interface Pricer {
 
 	
 	public Character characterOfThisPricer();
