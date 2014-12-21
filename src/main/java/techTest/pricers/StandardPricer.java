@@ -4,6 +4,10 @@ import org.apache.commons.lang3.StringUtils;
 
 public class StandardPricer extends Pricer{
 
+	//we have to have a no arg constructor for bean reflection (possible to override with anotations)
+	public StandardPricer(){
+		super();
+	}
 
 	public StandardPricer(String string, int pricePerUnit) {
 		super(string, pricePerUnit);
@@ -18,7 +22,7 @@ public class StandardPricer extends Pricer{
 	@Override
 	public int price(String orderString) {
 
-		int numberOfItems = StringUtils.countMatches(orderString, stringOfThisPricer() );
+		int numberOfItems = StringUtils.countMatches(orderString, getLetter() );
 		return numberOfItems * getPricePerUnit();
 	}
 	

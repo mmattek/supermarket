@@ -21,7 +21,7 @@ public class BulkDiscountPricer extends Pricer {
 	}
 	@Override
 	public int price(String orderString) {
-		int numberOfItems = StringUtils.countMatches(orderString, stringOfThisPricer() );
+		int numberOfItems = StringUtils.countMatches(orderString, getLetter() );
 		int total = (numberOfItems/discountQuantity) * discountPrice;
 		// have to price the remainder that don't qualify for discount
 		total = total + (numberOfItems%discountQuantity) *  getPricePerUnit();

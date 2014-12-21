@@ -1,16 +1,25 @@
 package techTest;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 import techTest.pricers.Pricer;
 
 public class SuperMarket implements Market {
 
-	private static Map<Character, Pricer> pricers = 
-			new ConcurrentHashMap<>();
+	private static Map<String, Pricer> pricers = 
+			new HashMap<>();
+
+	private static SuperMarket superMarket = new SuperMarket();
+	
+	//singleton patern, only access thru getSuperMarket()
+	private SuperMarket(){}
+	
+	public static SuperMarket getSuperMarket(){
+		return superMarket;
+	}
 
 	
 	@Override
@@ -38,7 +47,7 @@ public class SuperMarket implements Market {
 
 	@Override
 	public void registerPricer(Pricer pricer) {
-		pricers.put(pricer.characterOfThisPricer(), pricer);
+		pricers.put(pricer.getLetter(), pricer);
 		
 	}
 

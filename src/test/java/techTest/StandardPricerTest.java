@@ -12,7 +12,7 @@ public class StandardPricerTest {
 
 	@Test
 	public void test() {
-		market = new SuperMarket();
+		market = SuperMarket.getSuperMarket();
 		market.registerPricer(new StandardPricer("A", 20));
 		market.registerPricer(new StandardPricer("C", 30));
 		assertTrue(market.checkout("AA")==40);
@@ -26,7 +26,7 @@ public class StandardPricerTest {
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public void testBadArgs(){
-		market = new SuperMarket();
+		market = SuperMarket.getSuperMarket();
 		market.registerPricer(new StandardPricer("A", 20));
 		market.registerPricer(new StandardPricer("C", 30));
 		market.checkout("Z");

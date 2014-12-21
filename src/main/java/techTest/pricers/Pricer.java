@@ -6,11 +6,22 @@ package techTest.pricers;
  */
 public abstract class Pricer {
 
-	private final Character letter;
+	private String letter;
+	public String getLetter() {
+		return letter;
+	}
+
+	public void setLetter(String letter) {
+		this.letter = letter;
+	}
+
+
+	public void setPricePerUnit(int pricePerUnit) {
+		this.pricePerUnit = pricePerUnit;
+	}
+
 	private int pricePerUnit;
 	
-	// No args constructor is a no-no
-	// but hide in the implementing classes
 	public Pricer(){
 		letter =null;
 		pricePerUnit=0;
@@ -24,22 +35,11 @@ public abstract class Pricer {
 	 * @param pricePerUnit -- this is the standard, non bulk discounted price
 	 */
 	public Pricer(String letterVal, int pricePerUnit){
-		this(letterVal.charAt(0), pricePerUnit);
+		letter = letterVal;
+		this.pricePerUnit = pricePerUnit;
 		
 	}
 	
-	public Pricer (Character letter, int pricePerUnit) {
-		this.letter=letter;
-		this.pricePerUnit=pricePerUnit;
-	}
-
-	public Character characterOfThisPricer() {
-		return letter;
-	}
-
-	public String stringOfThisPricer() {
-		return String.valueOf(letter);
-	}
 
 	public int getPricePerUnit(){
 		return pricePerUnit;

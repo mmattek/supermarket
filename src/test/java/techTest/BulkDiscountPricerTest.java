@@ -14,7 +14,7 @@ public class BulkDiscountPricerTest {
 	
 	@Test
 	public void test() {
-		market = new SuperMarket();
+		market = SuperMarket.getSuperMarket();
 		market.registerPricer(new BulkDiscountPricer("B", 50, 5, 150));
 		assertTrue(market.checkout("BBBBB")==150);
 		// 6= $150 + 50 for the extra

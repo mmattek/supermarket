@@ -19,7 +19,7 @@ public class SuperMarketTester {
 
 	@Test
 	public void test() {
-		market = new SuperMarket();
+		market = SuperMarket.getSuperMarket();
 		market.registerPricer(new StandardPricer("A", 20));
 		market.registerPricer(new StandardPricer("C", 30));
 		market.registerPricer(new BulkDiscountPricer("B", 50, 5, 150));
