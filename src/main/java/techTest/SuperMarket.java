@@ -26,7 +26,7 @@ public class SuperMarket implements Market {
 	public int checkout(String items) throws IllegalArgumentException{
 
 		int total = 0;
-		for (Character ch : getUniqueItemList(items)){
+		for (String ch : getUniqueItemList(items)){
 			Pricer productPricer = pricers.get(ch);
 			if (productPricer==null){
 				throw new IllegalArgumentException("can't find pricer for " + String.valueOf(ch));	
@@ -37,10 +37,10 @@ public class SuperMarket implements Market {
 	}
  
 	// filters down uniq chars.. probably a more efficient algorithm here for very VERY large orders?
-	private Set<Character> getUniqueItemList(String items){
-		Set<Character> set = new HashSet<Character>();
+	private Set<String> getUniqueItemList(String items){
+		Set<String> set = new HashSet<String>();
 		for (Character ch : items.toCharArray()){
-			set.add(ch);
+			set.add(Character.toString(ch));
 		}
 		return set;
 	}

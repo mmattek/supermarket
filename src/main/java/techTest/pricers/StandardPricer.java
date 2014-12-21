@@ -25,6 +25,12 @@ public class StandardPricer extends Pricer{
 		int numberOfItems = StringUtils.countMatches(orderString, getLetter() );
 		return numberOfItems * getPricePerUnit();
 	}
+
+	@Override
+	public String toString() {
+		return "StandardPricer [getLetter()=" + getLetter()
+				+ ", getPricePerUnit()=" + getPricePerUnit() + "]";
+	}
 	
 	
 }
