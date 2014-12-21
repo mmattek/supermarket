@@ -9,8 +9,8 @@ import org.apache.commons.lang3.StringUtils;
  * @author mitch
  */
 public class BulkDiscountPricer extends Pricer {
-	private final int discountQuantity;
-	private final int discountPrice;
+	private  int discountQuantity;
+	private  int discountPrice;
 
 	public BulkDiscountPricer(String letterVal, int pricePerUnit,
 			int discountQuantity, int discountPrice){
@@ -19,6 +19,24 @@ public class BulkDiscountPricer extends Pricer {
 		this.discountQuantity=discountQuantity;
 		
 	}
+
+	public void setDiscountQuantity(int discountQuantity) {
+		this.discountQuantity = discountQuantity;
+	}
+
+	public void setDiscountPrice(int discountPrice) {
+		this.discountPrice = discountPrice;
+	}
+
+	/**
+	 * have to have a no-arg constructor for spring bean reflection to work properly
+	 */
+	public BulkDiscountPricer(){
+		super();
+		discountQuantity=1;
+		discountPrice=1;
+	}
+	
 	@Override
 	public int price(String orderString) {
 		int numberOfItems = StringUtils.countMatches(orderString, getLetter() );
@@ -26,6 +44,14 @@ public class BulkDiscountPricer extends Pricer {
 		// have to price the remainder that don't qualify for discount
 		total = total + (numberOfItems%discountQuantity) *  getPricePerUnit();
 		return total;
+	}
+
+	public int getDiscountQuantity() {
+		return discountQuantity;
+	}
+
+	public int getDiscountPrice() {
+		return discountPrice;
 	}
 
 }

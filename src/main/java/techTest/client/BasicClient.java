@@ -1,30 +1,36 @@
 package techTest.client;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.*;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.web.client.RestTemplate;
 
-import techTest.pricers.StandardPricer;
-import us.monoid.json.*;
-import us.monoid.web.*;
+import techTest.pricers.*;
+import us.monoid.json.JSONException;
 
 public class BasicClient {
 
 	private final URI urlRegStd;
 	private final URI urlCheckout;
+	private final URI urlRegBulk;
 	
 	public BasicClient() throws URISyntaxException {
 		urlRegStd = new URI("http://localhost:8080/registerStandardPricer");
+		urlRegBulk = new URI("http://localhost:8080/registerBulkPricer");
 		urlCheckout  = new URI("http://localhost:8080/checkout");
 	}
 
 	public void regPricers() throws IOException, JSONException {
 		regStd("A", 20);
 		regStd("C", 30);
-					
-		
+		RestTemplate rt = new RestTemplate();
+		// now just register the 5 "b"s for 150.
+		BulkDiscountPricer post = rt.postForObject(urlRegBulk, 
+				new HttpEntity<BulkDiscountPricer>(
+						new BulkDiscountPricer("B", 50, 5, 150))
+						, BulkDiscountPricer.class);
+		System.out.println("reged pricer" + post);
 		
 	}
 	
@@ -33,7 +39,7 @@ public class BasicClient {
 		
 		StandardPricer post = rt.postForObject(urlRegStd, 
 				new HttpEntity<StandardPricer>(
-				new StandardPricer("A", 20))
+				new StandardPricer(letter, unitPrice))
 				, StandardPricer.class);
 		System.out.println("reged pricer" + post);
 	
@@ -53,7 +59,7 @@ public class BasicClient {
 		try {
 			clnt = new BasicClient();
 			clnt.regPricers();
-			clnt.checkout("AA");
+			clnt.checkout("ABBACBBAB");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
