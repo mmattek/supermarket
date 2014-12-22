@@ -5,16 +5,19 @@ import org.springframework.web.bind.annotation.*;
 import techTest.SuperMarket;
 import techTest.pricers.*;
 
+/**
+ * Main REST enpoint of this service.
+ * registerStandardPricer -- {"letter":"?", "pricePerUnit":"?"} -- sets letter price
+ * registerBulkPricer --'{"letter":"?","pricePerUnit":"?","discountQuantity":"?","discountPrice":"?"}'
+ * --sets a discounted X for $Y pricer
+ * checkout -- Stringg "AAAABBB" etc, - gets price 
+ * @author mitch
+ *
+ */
 @RestController
 
 public class MarketService {
 
-    @RequestMapping("/")
-    public String index() {
-        return "Hello";
-    }
-
-   
     @RequestMapping(value="/registerStandardPricer", method = RequestMethod.POST)
     public ResponseEntity<StandardPricer> regStandard(@RequestBody StandardPricer p){
     	SuperMarket.getSuperMarket().registerPricer(p);

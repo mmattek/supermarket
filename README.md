@@ -32,7 +32,7 @@ registers a pricer for "A" -- you'll see action in the other term running the sp
 curl -i -X POST -H "Content-Type: application/json" -d '{"letter":"C","pricePerUnit":"30"}' http://localhost:8080/registerStandardPricer
 
 now reg bulk pricer:
-curl -i -X POST -H "Content-Type: application/json" -d '{"letter":"B,"pricePerUnit":"50","discountQuantity":"5","discountPrice":"150"}' http://localhost:8080/registerBulkPricer
+curl -i -X POST -H "Content-Type: application/json" -d '{"letter":"B","pricePerUnit":"50","discountQuantity":"5","discountPrice":"150"}' http://localhost:8080/registerBulkPricer
 
 and checkout!
 $ curl -i -X POST -H "Content-Type: application/json" -d 'ABBACBBAB' http://localhost:8080/checkout
@@ -86,9 +86,12 @@ The pricer would already have the entire order context, and could easily deal wi
 
 Nothing in here is really stateful, so you could scale this out by having many markets.
 In a real project for production, I would probably use an external config/data store to have precanned
-items loaded on startup. Probably more tests. I'm also unhappy with having to add in no-arg constructors 
+items loaded on startup.  I'm also unhappy with having to add in no-arg constructors 
 to the object model to get Spring's Jackson JSON binding to work. I know this is possible to override
-with annotations.
+with annotations. Also, since the service was a bit of an afterthought, there aren't really unit
+tests for it, other than a small binding one. In reality, spring lets you sub in mocks pretty easy
+and also you can do integration by launching an embedded container on a random avail. port and reference 
+that. We are doing this on several "microservices" projects right now and it works well.
 
 Also for scale, spring cloud netflix offers dynamic, load-balanced routing in Zuul, distributed config 
 servers, etc. I'm looking into this for a project right now.

@@ -7,6 +7,13 @@ import java.util.Set;
 
 import techTest.pricers.Pricer;
 
+/**
+ * gateway class - holds registered prices in a singleton
+ * takes order and prices order
+ * Note: Not currently thread safe
+ * @author mitch
+ *
+ */
 public class SuperMarket implements Market {
 
 	private static Map<String, Pricer> pricers = 

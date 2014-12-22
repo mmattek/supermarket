@@ -8,12 +8,17 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * "jumpstart" class for spring boot,
+ * launches the REST service MarketService
+ * @author mitch
+ *
+ */
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
 public class Starter {
 
-    
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Starter.class, args);
 
@@ -21,6 +26,7 @@ public class Starter {
 
         String[] beanNames = ctx.getBeanDefinitionNames();
         Arrays.sort(beanNames);
+        // handy debug.. 
         for (String beanName : beanNames) {
             System.out.println(beanName);
         }
