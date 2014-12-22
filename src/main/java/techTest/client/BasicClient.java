@@ -7,7 +7,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.web.client.RestTemplate;
 
 import techTest.pricers.*;
-import us.monoid.json.JSONException;
 
 public class BasicClient {
 
@@ -21,7 +20,7 @@ public class BasicClient {
 		urlCheckout  = new URI("http://localhost:8080/checkout");
 	}
 
-	public void regPricers() throws IOException, JSONException {
+	public void regPricers() throws IOException {
 		regStd("A", 20);
 		regStd("C", 30);
 		RestTemplate rt = new RestTemplate();
@@ -34,7 +33,7 @@ public class BasicClient {
 		
 	}
 	
-	private void regStd(String letter, Integer unitPrice) throws JSONException{
+	private void regStd(String letter, Integer unitPrice){
 		RestTemplate rt = new RestTemplate();
 		
 		StandardPricer post = rt.postForObject(urlRegStd, 
