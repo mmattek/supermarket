@@ -3,6 +3,13 @@ supermarket
 running: this project requires maven (http://maven.apache.org/)
 also, I just used maven 3.1 and java 7
 
+however, the spring boot plugin for maven can build an executable jar
+java -jar techTest-0.0.1-SNAPSHOT.jar
+
+apologies for putting this big jar in the repo, but if you didn't have
+maven handy already, though this would help. Obviously, the curl commands
+below would be the only test then of the code, ignore the basicClient.
+
 C:\Users\mitch\git\supermarket2>mvn -version
 Apache Maven 3.1.0 (893ca28a1da9d5f51ac03827af98bb730128f9f2; 2013-06-27 21:15:3
 2-0500)
