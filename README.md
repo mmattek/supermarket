@@ -7,7 +7,7 @@ however, the spring boot plugin for maven can build an executable jar
 java -jar techTest-0.0.1-SNAPSHOT.jar
 
 apologies for putting this big jar in the repo, but if you didn't have
-maven handy already, though this would help. Obviously, the curl commands
+maven handy already, thought this would help. Obviously, the curl commands
 below would be the only test then of the code, ignore the basicClient.
 
 C:\Users\mitch\git\supermarket2>mvn -version
